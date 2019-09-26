@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.hello),
     path('api/v1/<str:type>', views.list),
     path('api/v1/<str:type>/<int:item_id>', views.item),
+    path('api/v1/<str:type>/create', views.add_item),
     path('api/v1/<str:type>/<int:item_id>/delete', views.delete_item)
 ]

@@ -7,3 +7,8 @@
 {% else %}
     <p>There are no users.</p>
 {% endif %}
+<form action="/api/v1/{{ item_type }}/create" method="post">
+{% csrf_token %}
+  <br>Add new entry?<br>
+  <input type="text" name="item">
+</form>

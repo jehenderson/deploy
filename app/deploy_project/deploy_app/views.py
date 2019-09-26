@@ -2,6 +2,22 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from deploy_app.models import Person, Government, Enterprise
+
+# Goal is to refactor below code to make more DRY
+# def get_type(type, item_id):
+#   if (type == 'person'):
+#     item = Person.objects.get(pk=item_id)
+#     item_type = 'person'
+#   elif (type == 'government'):
+#     item = Government.objects.get(pk=item_id)
+#     item_type = 'government'
+#   elif (type == 'enterprise'):
+#     item = Enterprise.objects.get(pk=item_id)
+#     item_type = 'enterprise'
+#   else:
+#     raise error
+#   return {'item': item, 'item_type': item_type}
+
 # Create your views here.
 
 def hello(request):
@@ -44,8 +60,31 @@ def item(request, type, item_id):
   context = { 'item': item, 'item_type':item_type, 'item_id': item_id }
   return HttpResponse(template.render(context, request))
 
-def add_item(request, type, id):
-  pass
+def add_item(request, type):
+  if (type == 'person'):
+    person = Person(name=request.POST['item'])
+    person.save()
+  elif (type == 'government'):
+    government = Government(name=request.POST['item'])
+    government.save()
+  elif (type == 'enterprise'):
+    enterprise = Enterprise(name=request.POST['item'])
+    enterprise.save()
+  else:
+    raise error
+  return HttpResponseRedirect('/api/v1/{type}s'.format(type=type))
+  
 
-def delete_item(request, type, id):
-  pass
+def delete_item(request, type, item_id):
+  if (type == 'person'):
+    item = Person.objects.get(pk=item_id)
+    item.delete()
+  elif (type == 'government'):
+    item = Government.objects.get(pk=item_id)
+    item.delete()
+  elif (type == 'enterprise'):
+    item = Enterprise.objects.get(pk=item_id)
+    item.delete()
+  else:
+    raise error
+  return HttpResponseRedirect('/api/v1/{type}s'.format(type=type))
