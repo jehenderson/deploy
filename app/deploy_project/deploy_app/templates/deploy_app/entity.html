@@ -1,4 +1,6 @@
-<form>
-  You're looking at {{ item }}. Update value?<br>
+<form action="/api/v1/{{ item_type }}/{{ item.id }}" method="post">
+{% csrf_token %}
+  You're looking at {{ item }}. 
+  <br>Update value?<br>
   <input type="text" name="item">
 </form>
