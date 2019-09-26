@@ -14,6 +14,16 @@ services:
       - MYSQL_ROOT_PASSWORD=$$3cureUS
       - MYSQL_DATABASE=db
 
+  models:
+    image: tp33/django
+    volumes:
+      - ./app:/app
+    ports:
+      - "8001:8000"
+    networks:
+      - backend
+    command: bash -c "mod_wsgi-express start-server --working-directory /app/deploy_project --reload-on-changes /app/deploy_project/deploy_project/wsgi.py"
+
   web:
     image: tp33/django
     networks:
@@ -27,17 +37,7 @@ services:
     ports:
       - '8000:8000'
     command: bash -c "mod_wsgi-express start-server --working-directory /app/deploy_project --reload-on-changes /app/deploy_project/deploy_project/wsgi.py"
-
-  models:
-    image: tp33/django
-    volumes:
-      - ./app:/app
-    ports:
-      - "8001:8000"
-    networks:
-      - backend
-    command: bash -c "mod_wsgi-express start-server --working-directory /app/deploy_project --reload-on-changes /app/deploy_project/deploy_project/wsgi.py"
-
+#python /app/deploy_project/deploy_project/manage.py migrate && python /app/deploy_project/deploy_project/manage.py loaddata db.json && 
 networks:
   backend:
 networks:

@@ -1,0 +1,94 @@
+[
+  {
+    "model": "deploy_app.person",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Lennon",
+      "date_of_birth": "1940-10-09"
+    }
+  },
+  {
+    "model": "deploy_app.person",
+    "pk": 2,
+    "fields": {
+      "first_name": "Paul",
+      "last_name": "McCartney",
+      "date_of_birth": "1942-06-18"
+    }
+  },
+  {
+    "model": "deploy_app.government",
+    "pk": 1,
+    "fields": {
+      "name": "United States"
+    }
+  },
+  {
+    "model": "deploy_app.government",
+    "pk": 2,
+    "fields": {
+      "name": "Canada"
+    }
+  },
+  {
+    "model": "deploy_app.government",
+    "pk": 3,
+    "fields": {
+      "name": "Mexico"
+    }
+  },
+  {
+    "model": "deploy_app.government_citizens",
+    "pk": 1,
+    "fields": {
+      "government_id": "1",
+      "person_id": "1"
+    }
+  },
+  {
+    "model": "deploy_app.government_citizens",
+    "pk": 2,
+    "fields": {
+      "government_id": "1",
+      "person_id": "2"
+    }
+  },
+  {
+    "model": "deploy_app.enterprise",
+    "pk": 1,
+    "fields": {
+      "name": "Google"
+    }
+  },
+  {
+    "model": "deploy_app.enterprise",
+    "pk": 2,
+    "fields": {
+      "name": "Facebook"
+    }
+  },
+  {
+    "model": "deploy_app.enterprise",
+    "pk": 3,
+    "fields": {
+      "name": "Amazon"
+    }
+  },
+  {
+    "model": "deploy_app.enterprise_employees",
+    "pk": 1,
+    "fields": {
+      "enterprise_id": "1",
+      "person_id": "1"
+    }
+  },
+  {
+    "model": "deploy_app.enterprise_customers",
+    "pk": 1,
+    "fields": {
+      "enterprise_id": "1",
+      "person_id": "1"
+    }
+  }
+]
