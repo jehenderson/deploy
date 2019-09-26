@@ -24,22 +24,8 @@ services:
       - backend
     command: bash -c "mod_wsgi-express start-server --working-directory /app/deploy_project --reload-on-changes /app/deploy_project/deploy_project/wsgi.py"
 
-  web:
-    image: tp33/django
-    networks:
-      backend:
-        aliases:
-          - web
-    depends_on:
-      - mysql
-    volumes:
-      - ./app:/app
-    ports:
-      - '8000:8000'
-    command: bash -c "mod_wsgi-express start-server --working-directory /app/deploy_project --reload-on-changes /app/deploy_project/deploy_project/wsgi.py"
-#python /app/deploy_project/deploy_project/manage.py migrate && python /app/deploy_project/deploy_project/manage.py loaddata db.json && 
-networks:
-  backend:
+#python /app/deploy_project/manage.py migrate && python /app/deploy_project/manage.py loaddata db.json && 
+
 networks:
   backend:
     driver: bridge
