@@ -1,13 +1,11 @@
-{% if item_list %}
-    <ul>
-    {% for item in item_list %}
-        <li><a href="/api/v1/{{ item_type }}/{{ item.id }}">{{ item }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>There are no users.</p>
-{% endif %}
-<form action="/api/v1/{{ item_type }}/create" method="post">
+<h1>Get Requests</h1>
+{% for person in people %}
+<p>{{ person }}</p>
+{% endfor %}
+{% for entity in entities %}
+<p>{{ entity }}</p>
+{% endfor %}
+<form action="/api/v1/add" method="post">
 {% csrf_token %}
   <br>Add new entry?<br>
   <input type="text" name="item">

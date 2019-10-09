@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Identyti</title>
+    <style type="text/css" media="screen">
+      html, body, #app {
+        font: sans-serif, 12px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font-size: 1rem;
+        width: 100%;
+        border: solid black 1px;
+      }
+
+      figure {
+        box-sizing: border-box;
+        width: 25%;
+      }
+
+      img {
+        box-sizing: border-box;
+        width: 75%;
+      }
+
+      .Center {
+        text-align: center;
+      }
+
+      .Right-Corner {
+        text-align: right;
+      }
+
+      .MenuContainer {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .Menu {
+        width: 100%;
+        /* flex-basis: 10rem; */
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <form class="Right-Corner">
+        <input type="text" placeholder="Search..." value="">
+      </form>
+      <div class="MenuContainer">
+        {% for credential in credentials %}
+          <figure>
+            <a href="/{{ credential.name }}"><img src="{{ credential.icon }}" alt="{{ credential.name }}"></a>
+            <figcaption class="Center">{{ credential.name }}</figcaption>
+          </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
