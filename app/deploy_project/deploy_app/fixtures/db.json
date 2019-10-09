@@ -39,22 +39,6 @@
     }
   },
   {
-    "model": "deploy_app.government_citizens",
-    "pk": 1,
-    "fields": {
-      "government_id": "1",
-      "person_id": "1"
-    }
-  },
-  {
-    "model": "deploy_app.government_citizens",
-    "pk": 2,
-    "fields": {
-      "government_id": "1",
-      "person_id": "2"
-    }
-  },
-  {
     "model": "deploy_app.enterprise",
     "pk": 1,
     "fields": {
@@ -76,19 +60,165 @@
     }
   },
   {
-    "model": "deploy_app.enterprise_employees",
+    "model": "deploy_app.credentialtype",
     "pk": 1,
     "fields": {
-      "enterprise_id": "1",
-      "person_id": "1"
+      "name": "Identification",
+      "icon": "https://icon-library.net/images/name-tag-icon/name-tag-icon-20.jpg",
+      "complete": false,
+      "requirements": [1]
     }
   },
   {
-    "model": "deploy_app.enterprise_customers",
+    "model": "deploy_app.credentialtype",
+    "pk": 2,
+    "fields": {
+      "name": "Insurance",
+      "icon": "https://icon-library.net/images/insurance-policy-icon/insurance-policy-icon-10.jpg",
+      "complete": false,
+      "requirements": [1]
+    }
+  },
+  {
+    "model": "deploy_app.credentialtype",
+    "pk": 3,
+    "fields": {
+      "name": "Medical",
+      "icon": "https://image.flaticon.com/icons/png/512/27/27786.png",
+      "complete": false,
+      "requirements": [1]
+    }
+  },
+  {
+    "model": "deploy_app.credentialtype",
+    "pk": 4,
+    "fields": {
+      "name": "Financial",
+      "icon": "https://icon-library.net/images/cash-icon-png/cash-icon-png-0.jpg",
+      "complete": false,
+      "requirements": [1]
+    }
+  },
+  {
+    "model": "deploy_app.credentialtype",
+    "pk": 5,
+    "fields": {
+      "name": "Academic",
+      "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46TKKmhaWJvAcbfEYXpGzC3ru1dXQ-u0WxmbdAad5BdZAT5wP",
+      "complete": false,
+      "requirements": [1]
+    }
+  },
+  {
+    "model": "deploy_app.credentialtype",
+    "pk": 5,
+    "fields": {
+      "name": "Legal",
+      "icon": "https://icon-library.net/images/law-icon-png/law-icon-png-19.jpg",
+      "complete": false,
+      "requirements": [1]
+    }
+  },
+  {
+    "model": "deploy_app.credential",
     "pk": 1,
     "fields": {
-      "enterprise_id": "1",
-      "person_id": "1"
+      "name": "Driver's License"
+    }
+  },
+  {
+    "model": "deploy_app.credential",
+    "pk": 2,
+    "fields": {
+      "name": "Passport"
+    }
+  },
+  {
+    "model": "deploy_app.credential",
+    "pk": 3,
+    "fields": {
+      "name": "Birth Certificate"
+    }
+  },
+  {
+    "model": "deploy_app.credential",
+    "pk": 1,
+    "fields": {
+      "name": "Social Security Card"
+    }
+  },
+  {
+    "model": "deploy_app.credential",
+    "pk": 1,
+    "fields": {
+      "name": "Military ID"
+    }
+  },
+  {
+    "model": "deploy_app.credentialrequirement",
+    "pk": 1,
+    "fields": {
+      "type": "Proof of Social Security Number",
+      "component_documents": [1,2,3]
+    }
+  },
+  {
+    "model": "deploy_app.credentialrequirement",
+    "pk": 2,
+    "fields": {
+      "type": "Primary Proof of Virginia Residence",
+      "component_documents": []
+    }
+  },
+  {
+    "model": "deploy_app.credentialrequirement",
+    "pk": 3,
+    "fields": {
+      "type": "Secondary Proof of Virginia Residence",
+      "component_documents": []
+    }
+  },
+  {
+    "model": "deploy_app.credentialrequirement",
+    "pk": 3,
+    "fields": {
+      "type": "Proof of Legal Presence",
+      "component_documents": []
+    }
+  },
+  {
+    "model": "deploy_app.credentialrequirement",
+    "pk": 4,
+    "fields": {
+      "type": "Proof of Identity",
+      "component_documents": []
+    }
+  },
+  {
+    "model": "deploy_app.document",
+    "pk": 1,
+    "fields": {
+      "name": "Social Security Card",
+      "valid_from": "1990-01-01",
+      "valid_to": "2000-01-01"
+    }
+  },
+  {
+    "model": "deploy_app.document",
+    "pk": 2,
+    "fields": {
+      "name": "IRS Form W-2",
+      "valid_from": "1990-01-01",
+      "valid_to": "2000-01-01"
+    }
+  },
+  {
+    "model": "deploy_app.document",
+    "pk": 3,
+    "fields": {
+      "name": "Payroll Check Stub",
+      "valid_from": "1990-01-01",
+      "valid_to": "2000-01-01"
     }
   }
 ]

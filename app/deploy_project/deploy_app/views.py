@@ -1,75 +1,44 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.core import serializers
 from deploy_app.models import *
+import json
 
 # Create your views here.
 
 def hello(request):
-  text = """<h1>welcome to my app !</h1>"""
-  return HttpResponse(text)
+  credentials = CredentialType.objects.all()
+  context = {"credentials": credentials}
+  return render(request, 'deploy_app/home.html', context)
 
-def list(request, type):
-  if (type == 'people'):
-    item_list = Person.objects.order_by('pk')
-    item_type = 'person'
-  elif (type == 'governments'):
-    item_list = Government.objects.order_by('pk')
-    item_type = 'government'
-  elif (type == 'enterprises'):
-    item_list = Enterprise.objects.order_by('pk')
-    item_type = 'enterprise'
-  else:
-    raise error
-  template = loader.get_template('deploy_app/list.html')
-  context = { 'item_list': item_list, 'item_type': item_type }
-  return HttpResponse(template.render(context, request))
+def credential_category(request, type):
+  requirements = CredentialRequirement.objects.all()
+  context = {"requirements": requirements}
+  return render(request, 'deploy_app/credential_category.html', context)
 
-def item(request, type, item_id):
-  if (type == 'person'):
-    item = Person.objects.get(pk=item_id)
-    item_type = 'person'
-  elif (type == 'government'):
-    item = Government.objects.get(pk=item_id)
-    item_type = 'government'
-  elif (type == 'enterprise'):
-    item = Enterprise.objects.get(pk=item_id)
-    item_type = 'enterprise'
-  else:
-    raise error
-  if (request.method == "POST"):
-    item.name = request.POST['item']
-    item.save()
-    return HttpResponseRedirect('/api/v1/{item_type}/{item_id}'.format(item_type=item_type, item_id=item_id))
+def list(request):
+  people_list = Person.objects.all()
+  entity_list = Enterprise.objects.all()
+  governments = Government.objects.all()
+  context = {"people": people_list, "entities": entity_list}
+  return render(request, 'deploy_app/list.html', context)
+
+def item(request):
+  people = Person.objects.all()
+  governments = Government.objects.all()
+  enterprises = Enterprise.objects.all()
   template = loader.get_template('deploy_app/entity.html')
-  context = { 'item': item, 'item_type':item_type, 'item_id': item_id }
-  return HttpResponse(template.render(context, request))
+  context = {'people': people, 'governments': governments, 'enterprises': enterprises}
+  return render(request, 'deploy_app/entity.html', context)
 
-def add_item(request, type):
-  if (type == 'person'):
-    person = Person(name=request.POST['item'])
-    person.save()
-  elif (type == 'government'):
-    government = Government(name=request.POST['item'])
-    government.save()
-  elif (type == 'enterprise'):
-    enterprise = Enterprise(name=request.POST['item'])
-    enterprise.save()
-  else:
-    raise error
-  return HttpResponseRedirect('/api/v1/{type}s'.format(type=type))
-  
+def add_item(request):
 
-def delete_item(request, type, item_id):
+  return HttpResponseRedirect('')
+
+
+def delete_item(request, type):
   if (type == 'person'):
     item = Person.objects.get(pk=item_id)
     item.delete()
-  elif (type == 'government'):
-    item = Government.objects.get(pk=item_id)
-    item.delete()
-  elif (type == 'enterprise'):
-    item = Enterprise.objects.get(pk=item_id)
-    item.delete()
-  else:
-    raise error
-  return HttpResponseRedirect('/api/v1/{type}s'.format(type=type))
+  return HttpResponseRedirect('')

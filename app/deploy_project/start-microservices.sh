@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sleep 10
+python manage.py makemigrations
 python manage.py migrate
 python manage.py flush --no-input -v 0
 python manage.py loaddata db.json
