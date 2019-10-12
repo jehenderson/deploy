@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Signin Template · Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template
+    {% load static %}
+    link rel="stylesheet" type="text/css" href="{% static 'fileName.css' %}"> -->
+      <style type="text/css">
+        h1 {
+          margin:50px;
+        }
+      </style>
+  </head>
+  <body class="text-center">
+    <div>
+        <h1>{{Type}}</h1>
+        {% for item in listItem %}
+        <a href="http://localhost:8001/api/v1/{{Type}}/{{item}}">{{ item }}</a> <br>
+        {% endfor %}
+        <br>
+        <a href="http://localhost:8001/api/v1">Back</a> <br>
+    </div>
+  </body>
+</html>
+
