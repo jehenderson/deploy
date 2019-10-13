@@ -4,6 +4,7 @@ from django.template import loader
 from django.core import serializers
 from deploy_app.models import *
 import json
+import datetime
 
 # Create your views here.
 
@@ -36,23 +37,22 @@ def enterprises(request):
   context = {"Type": "Enterprises", "listItem": Enterprise.objects.all()}
   return render(request, 'deploy_app/list_item.html', context)
 
-def person(request, person):
-  item = Person(first_name=person[:person.index(" ")])
-  # dobField = Person._meta.get_field("date_of_birth")
-  # dob = dobField.value_from_obj(person)
-  dob = getattr(item, "date_of_birth")
-  if (dob != None):
-    dob = "Date of Birth" + dob
+def person(request, id):
+  item = Person.objects.get(pk=id)
+
+  person = item.first_name + " " + item.last_name
+  dob = "Date of Birth: " + str(item.date_of_birth)
+
   return render(request, 'deploy_app/item.html', {"type": "People", "item":person, "other":dob})
 
-def government(request, gov):
+def government(request, id):
   item = Government(name=gov)
   # dobField = Person._meta.get_field("date_of_birth")
   # dob = dobField.value_from_obj(person)
   name = getattr(item, "name")
   return render(request, 'deploy_app/item.html', {"type":"Governments", "item":name})
 
-def enterprise(request, enter):
+def enterprise(request, id):
   item = Enterprise(name=enter)
   # dobField = Person._meta.get_field("date_of_birth")
   # dob = dobField.value_from_obj(person)

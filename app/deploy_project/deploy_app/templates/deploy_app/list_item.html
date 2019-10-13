@@ -18,7 +18,7 @@
     <div>
         <h1>{{Type}}</h1>
         {% for item in listItem %}
-        <a href="http://localhost:8001/api/v1/{{Type}}/{{item}}">{{ item }}</a> <br>
+        <a href="http://localhost:8001/api/v1/{{Type}}/{{item.pk}}">{{ item }}</a> <br>
         {% endfor %}
         <br>
         <a href="http://localhost:8001/api/v1">Back</a> <br>
