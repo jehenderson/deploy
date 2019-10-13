@@ -14,9 +14,13 @@ def hello(request):
   return render(request, 'deploy_app/home.html', context)
 
 def credential_category(request, type):
-  requirements = CredentialRequirement.objects.all()
-  context = {"requirements": requirements}
+  types = CredentialType.objects.all()
+  credentials = Credential.objects.all()
+  context = {"credentials": credentials, "types": types}
   return render(request, 'deploy_app/credential_category.html', context)
+
+def upload_docs(request, type, id):
+  return render(request, 'deploy_app/page3.html')
 
 def list(request):
   people_list = Person.objects.all()

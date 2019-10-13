@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <!-- {% load static %} -->
   <head>
     <meta charset="utf-8">
     <title>Identyti</title>
-    <style type="text/css" media="screen">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <style type="text/css">
       html, body, #app {
         font: sans-serif, 12px;
         box-sizing: border-box;
       }
 
       h1 {
-        font-size: 1rem;
+        font-size: 10rem;
         width: 100%;
         border: solid black 1px;
+        text-align: center;
       }
 
       figure {
         box-sizing: border-box;
         width: 25%;
+      }
+
+      figcaption {
+        text-align: center;
+        display: flex;
+      }
+
+      ul {
+        list-style: none;
       }
 
       img {
@@ -29,30 +42,37 @@
         text-align: center;
       }
 
-      .Right-Corner {
+      .Right {
         text-align: right;
       }
 
       .MenuContainer {
         display: flex;
         flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
       }
 
       .Menu {
-        width: 100%;
-        /* flex-basis: 10rem; */
+        <!-- width: 900px; -->
+        display: flex;
+        flex-basis: 10rem;
         text-align: center;
+        flex-direction: center;
+      }
+
+      .MenuItem {
+
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <form class="Right-Corner">
-        <input type="text" placeholder="Search..." value="">
-      </form>
+      <h1>Identyti.io</h1>
+      <div> </div>
       <div class="MenuContainer">
         {% for credential in credentials %}
-          <figure>
+          <figure class="Menu">
             <a href="/{{ credential.name }}"><img src="{{ credential.icon }}" alt="{{ credential.name }}"></a>
             <figcaption class="Center">{{ credential.name }}</figcaption>
           </figure>
