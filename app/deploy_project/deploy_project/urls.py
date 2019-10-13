@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from deploy_app import views
-from deploy_app.models import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.hello),
     path('<str:type>', views.credential_category),
+    path('<str:type>/<int:id>', views.upload_docs),
     path('api/v1/get', views.list),
     path('api/v1/post', views.item),
     path('api/v1/add', views.add_item),

@@ -111,7 +111,7 @@
   },
   {
     "model": "deploy_app.credentialtype",
-    "pk": 5,
+    "pk": 6,
     "fields": {
       "name": "Legal",
       "icon": "https://icon-library.net/images/law-icon-png/law-icon-png-19.jpg",
@@ -142,14 +142,14 @@
   },
   {
     "model": "deploy_app.credential",
-    "pk": 1,
+    "pk": 4,
     "fields": {
       "name": "Social Security Card"
     }
   },
   {
     "model": "deploy_app.credential",
-    "pk": 1,
+    "pk": 5,
     "fields": {
       "name": "Military ID"
     }
