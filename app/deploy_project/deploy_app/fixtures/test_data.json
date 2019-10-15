@@ -1,0 +1,29 @@
+[
+  {
+    "model": "deploy_app.person",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Lennon",
+      "date_of_birth": "1940-10-09"
+    }
+  },
+  {
+    "model": "deploy_app.person",
+    "pk": 2,
+    "fields": {
+      "first_name": "Paul",
+      "last_name": "McCartney",
+      "date_of_birth": "1942-06-18"
+    }
+  },
+  {
+    "model": "deploy_app.peson",
+    "pk": 3,
+    "fields": {
+      "first_name": "James",
+      "last_name": "Henderson",
+      "date_of_birth": "1990-12-19"
+    }
+  }
+]
