@@ -16,7 +16,7 @@ before_script:
 - sleep 30
 - docker ps -a
 script:
-- curl localhost:8000/ -f
+- curl localhost:8001/ -f
 - docker exec -it models bash -c "python manage.py test"
 after_script:
 - docker-compose down
