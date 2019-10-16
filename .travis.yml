@@ -16,6 +16,6 @@ before_script:
   - docker ps -a
 script:
   # - curl localhost:8001/ -f
-  - docker exec -it deploy_models_run_1 bash -c "python manage.py test"
+  - docker exec -it deploy_models_1 bash -c "python manage.py test"
 after_script:
   - docker-compose down
