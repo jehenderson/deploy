@@ -10,11 +10,9 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 install:
   - mkdir -p ~/build/jehenderson/deploy_app/db
-  - docker-compose run -d mysql
-  - sleep 10
 before_script:
-  - docker-compose run -d models
-  - sleep 10
+  - docker-compose up -d
+  - sleep 20
   - docker ps -a
 script:
   # - curl localhost:8001/ -f
