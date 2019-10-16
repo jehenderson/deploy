@@ -20,6 +20,8 @@ services:
       - ./app/deploy_project:/app
     ports:
       - "8001:8000"
+    depends_on:
+      - "db"
     networks:
       - backend
     command: bash start-microservices.sh
