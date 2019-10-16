@@ -10,7 +10,6 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 install:
   - mkdir -p ~/build/jehenderson/deploy_app/db
-  # - docker-compose run -d mysql
   - sleep 10
 before_script:
   - docker-compose up -d
