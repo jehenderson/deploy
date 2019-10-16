@@ -13,7 +13,7 @@ install:
   - sleep 10
 before_script:
   - docker-compose up -d
-  - sleep 10
+  - sleep 60
   - docker ps -a
 script:
   - curl localhost:8001/ -f
