@@ -13,6 +13,10 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=$$3cureUS
       - MYSQL_DATABASE=db
+    healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+        interval: 20s
+        timeout: 10s
 
   models:
     image: tp33/django
@@ -21,7 +25,8 @@ services:
     ports:
       - "8001:8000"
     depends_on:
-      - "mysql"
+      mysql:
+        condition: service_healthy
     networks:
       - backend
     command: bash start-microservices.sh
