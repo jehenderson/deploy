@@ -22,11 +22,7 @@ services:
       - "8001:8000"
     depends_on:
       - mysql
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 5
+    restart: always
     networks:
       - backend
     command: bash start-microservices.sh
