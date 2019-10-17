@@ -1,4 +1,4 @@
-version: '3.7'
+version: '2.1'
 services:
   mysql:
     image: mysql
@@ -10,6 +10,11 @@ services:
       - ./init.sql:/data/application/init.sql
       - ./db:/var/lib/mysql
     command: --init-file /data/application/init.sql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     environment:
       - MYSQL_ROOT_PASSWORD=$$3cureUS
       - MYSQL_DATABASE=db
@@ -21,7 +26,8 @@ services:
     ports:
       - "8001:8000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     networks:
       - backend
     command: bash start-microservices.sh
