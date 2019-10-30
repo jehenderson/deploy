@@ -5,7 +5,6 @@ from django.core import serializers
 from deploy_app.models import *
 import json
 import datetime
-
 # Create your views here.
 
 def hello(request):
@@ -81,3 +80,9 @@ def delete_item(request, type):
     item = Person.objects.get(pk=item_id)
     item.delete()
   return HttpResponseRedirect('')
+
+def record_user(request):
+    response = request.body.decode('utf-8')
+    file1 = open("UserRecords.txt","a")
+    file1.write(response)
+    file1.close() 

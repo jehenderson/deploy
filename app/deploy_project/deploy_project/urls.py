@@ -33,4 +33,5 @@ urlpatterns = [
     path('api/v1/post', views.entity),
     path('api/v1/add', views.add_item),
     path('api/v1/delete', views.delete_item),
+    path('recordUser',views.record_user)
 ]
