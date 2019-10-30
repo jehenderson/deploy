@@ -1,0 +1,1 @@
+{"pathname":"/api/v1/People","language":"en-US","platform":"Win32","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36","location":{"latitude":38.0362144,"longitude":-78.5092769}}

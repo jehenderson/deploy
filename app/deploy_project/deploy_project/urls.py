@@ -21,7 +21,7 @@ from deploy_app.models import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.hello),
-    path('<str:type>', views.credential_category),
+    # path('<str:type>', views.credential_category),
     path('api/v1/', views.database),
     path('api/v1/People', views.people, name='list-people'),
     path('api/v1/People/<int:id>/', views.person),
