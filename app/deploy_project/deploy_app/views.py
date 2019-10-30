@@ -5,6 +5,8 @@ from django.core import serializers
 from deploy_app.models import *
 import json
 import datetime
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 def hello(request):
@@ -81,8 +83,10 @@ def delete_item(request, type):
     item.delete()
   return HttpResponseRedirect('')
 
+@csrf_exempt
 def record_user(request):
     response = request.body.decode('utf-8')
     file1 = open("UserRecords.txt","a")
     file1.write(response)
-    file1.close() 
+    file1.close()
+    return HttpResponse("test")
