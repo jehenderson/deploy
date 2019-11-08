@@ -85,8 +85,11 @@ def delete_item(request, type):
 
 @csrf_exempt
 def record_user(request):
-    response = request.body.decode('utf-8')
-    file1 = open("UserRecords.txt","a")
-    file1.write(response)
-    file1.close()
+    data = request.body.decode('utf-8')
+    # This should create a post request and send data to the lambda function
+    requests.post("arn:aws:lambda:us-east-1:524433039252:function:analytics", data)
+    # These 3 lines log to a text file
+    # file1 = open("UserRecords.txt","a")
+    # file1.write(response)
+    # file1.close()
     return HttpResponse("test")
