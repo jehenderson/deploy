@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template import loader
 from django.core import serializers
+from django.forms.models import model_to_dict
 from deploy_app.models import *
-import json, datetime, urllib.request
+import json, datetime
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -27,16 +28,19 @@ def list(request):
   return render(request, 'deploy_app/list.html', context)
 
 def people(request):
-  context = {"Type": "People", "listItem": Person.objects.all()}
-  return render(request, 'deploy_app/list_item.html', context)
+  people = Person.objects.all()
+  data = serializers.serialize('json', people)
+  return HttpResponse(data)
 
 def governments(request):
-  context = {"Type": "Governments", "listItem": Government.objects.all()}
-  return render(request, 'deploy_app/list_item.html', context)
+  governments = Government.objects.all()
+  data = serializers.serialize('json', governments)
+  return HttpResponse(data)
 
 def enterprises(request):
-  context = {"Type": "Enterprises", "listItem": Enterprise.objects.all()}
-  return render(request, 'deploy_app/list_item.html', context)
+  enterprises = Enterprise.objects.all()
+  data = serializers.serialize('json', enterprises)
+  return HttpResponse(data)
 
 def person(request, id):
   item = Person.objects.get(pk=id)
@@ -84,17 +88,7 @@ def delete_item(request, type):
 
 @csrf_exempt
 def record_user(request):
-    url = "https://npky8rle0m.execute-api.us-east-1.amazonaws.com/default/analytics"
-
-    if request.method == 'GET':
-        req = urllib.request.Request(url)
-    elif request.method == 'POST':
-        data = request.body
-        req = urllib.request.Request(url, data)
-    else:
-        return("Bad request type")
-    response = urllib.request.urlopen(req)
-    return HttpResponse(response.read())
+    return HttpResponse("complete")
 
 def visualize(request):
     return render(request, 'deploy_app/visualization.html')
