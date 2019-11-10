@@ -87,10 +87,4 @@ def delete_item(request, type):
 def record_user(request):
     data = request.body.decode('utf-8')
     # This should create a post request and send data to the lambda function
-    requests.post("https://lk6ocy6iqh.execute-api.us-east-1.amazonaws.com/default/analytics", data)
-    # These 3 lines log to a text file
-    # file1 = open("UserRecords.txt","a")
-    # file1.write(response)
-    # file1.close()
-    return HttpResponseRedirect('')
-    # return HttpResponse("test")
+    return redirect("https://lk6ocy6iqh.execute-api.us-east-1.amazonaws.com/default/analytics", data)
