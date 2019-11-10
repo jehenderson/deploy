@@ -95,3 +95,6 @@ def record_user(request):
         return("Bad request type")
     response = urllib.request.urlopen(req)
     return HttpResponse(response.read())
+
+def visualize(request):
+    return render(request, 'deploy_app/visualization.html')
