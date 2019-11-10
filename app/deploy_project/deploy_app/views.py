@@ -85,8 +85,15 @@ def delete_item(request, type):
 @csrf_exempt
 def record_user(request):
     url = "https://npky8rle0m.execute-api.us-east-1.amazonaws.com/default/analytics"
-    data = request.body
-    post_request = urllib.request.Request(url, data)
-    response = urllib.request.urlopen(post_request)
-    
-    return HttpResponse(response.read())
+
+    if request.method == 'GET':
+        get_request = urllib.request.Request(url)
+        response = urllib.request.urlopen(get_request)
+        return HttpResponse(response.read())
+    elif request.method == 'POST':
+        data = request.body
+        post_request = urllib.request.Request(url, data)
+        response = urllib.request.urlopen(post_request)
+        return HttpResponse(response.read())
+    else:
+        return("Bad request type")
