@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.core import serializers
 from deploy_app.models import *
-import json, datetime, urllib.request, urllib.parse
+import json, datetime, urllib.request
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
