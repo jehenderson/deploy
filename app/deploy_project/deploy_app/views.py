@@ -3,8 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.core import serializers
 from deploy_app.models import *
-import json
-import datetime
+import json, datetime, urllib.request, urllib.parse
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
@@ -85,6 +84,9 @@ def delete_item(request, type):
 
 @csrf_exempt
 def record_user(request):
-    data = request.body.decode('utf-8')
-    # This should create a post request and send data to the lambda function
-    return redirect("https://lk6ocy6iqh.execute-api.us-east-1.amazonaws.com/default/analytics", data)
+    url = "https://npky8rle0m.execute-api.us-east-1.amazonaws.com/default/analytics"
+    data = request.body
+    post_request = urllib.request.Request(url, data)
+    response = urllib.request.urlopen(post_request)
+    
+    return HttpResponse(response.read())
