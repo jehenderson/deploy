@@ -87,13 +87,11 @@ def record_user(request):
     url = "https://npky8rle0m.execute-api.us-east-1.amazonaws.com/default/analytics"
 
     if request.method == 'GET':
-        get_request = urllib.request.Request(url)
-        response = urllib.request.urlopen(get_request)
-        return HttpResponse(response.read())
+        req = urllib.request.Request(url)
     elif request.method == 'POST':
         data = request.body
-        post_request = urllib.request.Request(url, data)
-        response = urllib.request.urlopen(post_request)
-        return HttpResponse(response.read())
+        req = urllib.request.Request(url, data)
     else:
         return("Bad request type")
+    response = urllib.request.urlopen(req)
+    return HttpResponse(response.read())
