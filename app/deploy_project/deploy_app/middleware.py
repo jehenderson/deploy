@@ -1,6 +1,5 @@
 from django.http import HttpResponse, JsonResponse
-from django.core import serializers
-import urllib.request, json, platform
+import urllib.request, json
 
 def send_to_API(url, data):
   req = urllib.request.Request(url, data=data, method='POST',
@@ -19,23 +18,11 @@ class LoggingMiddleware(object):
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         url = "https://npky8rle0m.execute-api.us-east-1.amazonaws.com/default/analytics"
-        # if request.method == 'GET':
-        #     req = urllib.request.Request(url)
-        # elif request.method == 'POST':
-        #     data = request.body
-        #     req = urllib.request.Request(url, data)
-        # else:
-        #     return("Bad request type")
-        # response = urllib.request.urlopen(req)
 
         data = {
             "pathname": request.path,
-            "language": request.META['HTTP_ACCEPT_LANGUAGE'],
-            "platform": "platform.platform",
+            #"language": request.META['HTTP_ACCEPT_LANGUAGE'],
             "userAgent": request.META['HTTP_USER_AGENT'],
-            "location": {
-            "latitude": 0,
-            "longitude": 0
-            }
+            "ipAddress": request.META['REMOTE_ADDR'],
         }
         send_to_API(url, json.dumps(data).encode('utf8'))

@@ -86,9 +86,5 @@ def delete_item(request, type):
     item.delete()
   return HttpResponseRedirect('')
 
-@csrf_exempt
-def record_user(request):
-    return HttpResponse("complete")
-
 def visualize(request):
     return render(request, 'deploy_app/visualization.html')
